@@ -9,7 +9,3 @@
 *.htpasswd
 *.*.old
 SLASK
-
-##repo specific
-.data
-docker-compose.yml

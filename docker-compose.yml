@@ -1,0 +1,18 @@
+proserver:
+  build: .
+  container_name: proserver
+  ports:
+    - "4280:4280"
+    - "4282:4282"
+    - "4285:4285"
+  volumes_from:
+    - data
+data:
+  # image: tianon/true:latest (docker/fig#919)
+  image: busybox:latest
+  container_name: proserver_data
+  volumes:
+    - /var/log/proserver
+    - /var/opt/proserver
+    - /opt/proserver
+  command: /bin/echo
