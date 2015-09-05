@@ -1,4 +1,5 @@
 FROM debian:jessie
+MAINTAINER Erik Aulin <erik@aulin.co>
 ENV DEBIAN_FRONTEND=noninteractive
 
 # install prereqs
@@ -13,17 +14,10 @@ RUN apt-get update \
     && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* \
     && rm -rf /usr/share/man/?? /usr/share/man/??_*
 
-ENV VERSION="4.3.0"
-ENV INSTALLDIR=/src/CrashPlanPROServer_${VERSION}_Linux
-
 RUN mkdir /src
 WORKDIR /src
 COPY proserver.sh /src/
 RUN chmod a+x /src/proserver.sh
-
-# Download and unpack crashplan
-RUN curl -SL http://download.crashplan.com/installs/proserver/${VERSION}/CrashPlanPROServer_${VERSION}_Linux.tgz \
-    | tar -xz
 
 EXPOSE 4280 4282 4285
 
