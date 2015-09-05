@@ -1,8 +1,9 @@
 #!/bin/bash
 VERSION="4.3.0"
 INSTALLDIR=/src/CrashPlanPROServer_${VERSION}_Linux
+CMD=/opt/proserver/bin/proserver
 
-if [ ! -f /var/log/proserver/app.log ]
+if [ ! -f $CMD ]
 then
     echo "Download and unpack CrashPlanPROServer"
     curl -SL http://download.crashplan.com/installs/proserver/${VERSION}/CrashPlanPROServer_${VERSION}_Linux.tgz \
@@ -12,14 +13,14 @@ then
     sed -i 's/AUTO_ACCEPT_EULA=0/AUTO_ACCEPT_EULA=1/g' ${INSTALLDIR}/install.sh
     cd $INSTALLDIR && ./install.sh
     rm -rf $INSTALLDIR
+    #Want to clean this proccess so installer does not autostart proserver and create /etc/init.d/proserver
+    /etc/init.d/proserver stop
+    rm /etc/init.d/proserver
+    sleep 10
 fi
 
-if [ ! -f $INSTALLDIR/install.sh ]
-then
-    echo "Removing CrashPlanPROServer installation files"
-    rm -rf $INSTALLDIR
-fi
-
-# attach to logs (stops container from stopping)
-sleep 50
-tail -f /var/log/proserver/app.log
+echo "Starting Services"
+cd /opt/proserver && /usr/bin/java -Dapp=CPServer -server -Dnetworkaddress.cache.ttl=300 -Ddrools.compiler=JANINO \
+    -Dfile.encoding=UTF-8 -Dc42.native.md5.enabled=false -XX:+DisableExplicitGC -XX:+UseAdaptiveGCBoundary \
+    -XX:PermSize=256m -XX:MaxPermSize=256m -Xss256k -Xms256m -Xmx1024m -jar /opt/proserver/lib/com.backup42.app.jar \
+    -prop conf/conf_proe.properties -prop conf/conf_local.properties -config conf/conf_proe.groovy -config conf/conf_local.groovy
