@@ -30,3 +30,7 @@ data:
     #- /volume1/code42/:/opt/code42
   command: /bin/echo
 ```
+
+## Maintainers
+
+* [Erik Aulin](mailto:erik@ustwo.com)
