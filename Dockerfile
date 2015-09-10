@@ -19,6 +19,6 @@ WORKDIR /src
 COPY proserver.sh /src/
 RUN chmod a+x /src/proserver.sh
 
-EXPOSE 4280 4282 4285
+EXPOSE 4282 4283 4285 4286
 
 ENTRYPOINT ["/src/proserver.sh"]

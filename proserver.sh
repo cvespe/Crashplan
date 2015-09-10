@@ -13,7 +13,7 @@ then
     sed -i 's/AUTO_ACCEPT_EULA=0/AUTO_ACCEPT_EULA=1/g' ${INSTALLDIR}/install.sh
     cd $INSTALLDIR && ./install.sh
     rm -rf $INSTALLDIR
-    #Want to clean this proccess so installer does not autostart proserver and create /etc/init.d/proserver
+    #Stop the service and remove autostart
     /etc/init.d/proserver stop
     rm /etc/init.d/proserver
     sleep 10
