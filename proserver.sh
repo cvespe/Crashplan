@@ -13,14 +13,9 @@ then
     sed -i 's/AUTO_ACCEPT_EULA=0/AUTO_ACCEPT_EULA=1/g' ${INSTALLDIR}/install.sh
     cd $INSTALLDIR && ./install.sh
     rm -rf $INSTALLDIR
-    #Stop the service and remove autostart
-    /etc/init.d/proserver stop
-    rm /etc/init.d/proserver
-    sleep 10
 fi
 
 echo "Starting Services"
-cd /opt/proserver && /usr/bin/java -Dapp=CPServer -server -Dnetworkaddress.cache.ttl=300 -Ddrools.compiler=JANINO \
-    -Dfile.encoding=UTF-8 -Dc42.native.md5.enabled=false -XX:+DisableExplicitGC -XX:+UseAdaptiveGCBoundary \
-    -XX:PermSize=256m -XX:MaxPermSize=256m -Xss256k -Xms256m -Xmx1024m -jar /opt/proserver/lib/com.backup42.app.jar \
-    -prop conf/conf_proe.properties -prop conf/conf_local.properties -config conf/conf_proe.groovy -config conf/conf_local.groovy
+/etc/init.d/proserver start
+touch /var/log/proserver/app.log
+tail -f /var/log/proserver/app.log
