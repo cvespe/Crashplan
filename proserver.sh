@@ -1,12 +1,12 @@
 #!/bin/bash
-VERSION="4.3.0"
+VERSION="4.3.5.2"
 INSTALLDIR=/src/CrashPlanPROServer_${VERSION}_Linux
 CMD=/opt/proserver/bin/proserver
 
 if [ ! -f $CMD ]
 then
     echo "Download and unpack CrashPlanPROServer"
-    curl -SL http://download.crashplan.com/installs/proserver/${VERSION}/CrashPlanPROServer_${VERSION}_Linux.tgz \
+    curl -SL https://download.code42.com/installs/proserver/${VERSION}/CrashPlanPROServer_${VERSION}_Linux.tgz \
     | tar -xz
     echo "Starting installation of CrashPlanPROServer v$VERSION!"
     sed -i 's/INSTALL_UNATTENDED=0/INSTALL_UNATTENDED=1/g' ${INSTALLDIR}/install.sh
