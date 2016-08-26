@@ -9,7 +9,6 @@ proserver:
   volumes_from:
     - data
 data:
-  # image: tianon/true:latest
   image: busybox:latest
   container_name: proserver_data
   volumes:

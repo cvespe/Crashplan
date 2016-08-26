@@ -1,6 +1,7 @@
 # Crashplanproserver
 
-Crashplan PROe server container
+Crashplan Code42 server container
+http://support.code42.com/Administrator/5/Planning_And_Installing/Code42_Platform_Installers
 
 ## Usage
 
@@ -20,7 +21,6 @@ proserver:
   volumes_from:
     - data
 data:
-  # image: tianon/true:latest
   image: busybox:latest
   container_name: proserver_data
   volumes:
