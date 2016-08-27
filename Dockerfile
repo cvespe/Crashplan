@@ -1,5 +1,5 @@
 FROM java:openjdk-8-jre
-MAINTAINER Erik Aulin <erik@aulin.co>
+MAINTAINER Scott Egan
 
 # install prereqs
 #RUN apk add --update wget curl sed coreutils tar bash
