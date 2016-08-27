@@ -37,4 +37,4 @@ data:
 
 ## Maintainers
 
-* [Erik Aulin](mailto:erik@aulin.co)
+* [Scott Egan]
