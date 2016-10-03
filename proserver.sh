@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION="5.3.0"
+VERSION="5.3.1"
 MD5HASH=7ff0e69111d9d42dfae54eed5c600fe8
 CMD=/opt/proserver/bin/proserver
 INSTALLDIR=/tmp/src
